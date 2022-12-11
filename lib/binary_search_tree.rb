@@ -25,6 +25,12 @@ class Tree
     if arr.class != 'Array'
       return 
     end
+    
+    #find middle index of arr
+    mid = (arr.length)/2
+
+    
+
   end
 
 end
