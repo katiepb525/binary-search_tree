@@ -14,6 +14,7 @@ end
 
 # create binary search tree
 class Tree
+  attr_reader :root
   def initialize(arr)
     @arr = arr
     @root = build_tree(@arr, 0, @arr.length - 1)
