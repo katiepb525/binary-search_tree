@@ -21,7 +21,7 @@ class Tree
   # input: sorted array
   # output: root node of balanced BST
   def build_tree(arr, t_start, t_end)
-    binding.pry
+
     return if arr.class != Array
 
     return if (t_start > t_end)
