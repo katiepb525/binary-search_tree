@@ -3,10 +3,10 @@
 class Node
   include Comparable
 
-  def initialize()
-    @l_child
-    @r_child
-    @value
+  def initialize(l_child, r_child, value)
+    @l_child = l_child
+    @r_child = r_child
+    @value = value
   end
   
 end
