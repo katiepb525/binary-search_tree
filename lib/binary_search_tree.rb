@@ -13,8 +13,9 @@ end
 
 
 class Tree
-  def initialize
-    @root
+  def initialize(arr)
+    @arr = arr
+    @root = build_tree
   end 
   
   # convert sorted array to balanced BST
