@@ -25,5 +25,8 @@ class Tree
 
     # find middle index of arr
     mid = arr.length / 2
+
+    # make middle element root
+    root = Node.new(nil, nil, arr[mid])
   end
 end
