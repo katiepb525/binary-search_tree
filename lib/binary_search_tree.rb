@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 # binary tree node
 class Node
@@ -8,29 +9,21 @@ class Node
     @r_child = r_child
     @value = value
   end
-  
 end
-
 
 class Tree
   def initialize(arr)
     @arr = arr
     @root = build_tree(@arr)
-  end 
-  
+  end
+
   # convert sorted array to balanced BST
   # input: sorted array
   # output: root node of balanced BST
   def build_tree(arr)
-    if arr.class != 'Array'
-      return 
-    end
-    
-    #find middle index of arr
-    mid = (arr.length)/2
+    return if arr.class != 'Array'
 
-    
-
+    # find middle index of arr
+    mid = arr.length / 2
   end
-
 end
