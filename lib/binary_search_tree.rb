@@ -1,7 +1,9 @@
+
+# binary tree node
 class Node
   include Comparable
 
-  def initialize
+  def initialize()
     @l_child
     @r_child
     @value
@@ -15,7 +17,12 @@ class Tree
     @root
   end 
   
-  def build_tree(arr)
+  # convert sorted array to balanced BST
+  # input: sorted array
+  # output: root node of balanced BST
+  def build_tree
+
+
 
   end
 
