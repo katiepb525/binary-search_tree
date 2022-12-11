@@ -28,5 +28,14 @@ class Tree
 
     # make middle element root
     root = Node.new(nil, nil, arr[mid])
+
+    # assign all values < mid to left of subtree
+    root.l_child = build_tree(arr[mid])
+
+    # assign all values > mid to right of subtree
+    root.r_child = build_tree(arr[mid+1])
+
+    # return root element
+    return root
   end
 end
