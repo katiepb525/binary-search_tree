@@ -8,3 +8,15 @@ class Node
   end
   
 end
+
+
+class Tree
+  def initialize
+    @root
+  end 
+  
+  def build_tree(arr)
+
+  end
+
+end
