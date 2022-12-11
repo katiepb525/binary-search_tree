@@ -15,14 +15,14 @@ end
 class Tree
   def initialize(arr)
     @arr = arr
-    @root = build_tree
+    @root = build_tree(@arr)
   end 
   
   # convert sorted array to balanced BST
   # input: sorted array
   # output: root node of balanced BST
-  def build_tree
-    if @arr.class != 'Array'
+  def build_tree(arr)
+    if arr.class != 'Array'
       return 
     end
   end
