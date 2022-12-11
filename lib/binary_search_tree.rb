@@ -33,10 +33,10 @@ class Tree
     root = Node.new(nil, nil, arr[mid])
 
     # assign all values < mid to left of subtree
-    root.left = build_tree(arr, t_start, arr[mid])
+    root.left = build_tree(arr, t_start, mid - 1)
 
     # assign all values > mid to right of subtree
-    root.right = build_tree(arr, arr[mid+1], t_end)
+    root.right = build_tree(arr, mid + 1, t_end)
 
     # return root element
     root
