@@ -14,26 +14,29 @@ end
 class Tree
   def initialize(arr)
     @arr = arr
-    @root = build_tree(@arr)
+    @root = build_tree(@arr, 0, @arr.length - 1)
   end
 
   # convert sorted array to balanced BST
   # input: sorted array
   # output: root node of balanced BST
-  def build_tree(arr)
-    return if arr.class != 'Array'
+  def build_tree(arr, t_start, t_end)
+    binding.pry
+    return if arr.class != Array
+
+    return if (t_start > t_end)
 
     # find middle index of arr
-    mid = arr.length / 2
+    mid = (t_start + t_end) / 2
 
     # make middle element root
     root = Node.new(nil, nil, arr[mid])
 
     # assign all values < mid to left of subtree
-    root.left = build_tree(arr[mid])
+    root.left = build_tree(arr, t_start, arr[mid])
 
     # assign all values > mid to right of subtree
-    root.right = build_tree(arr[mid+1])
+    root.right = build_tree(arr, arr[mid+1], t_end)
 
     # return root element
     root
@@ -44,4 +47,10 @@ class Tree
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.value}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
+
 end
+
+arr = [1,2,3,4,5,6,7]
+
+tree = Tree.new(arr)
+tree.pretty_print
