@@ -64,6 +64,62 @@ class Tree
     root
   end
 
+  # if search tree is not empty
+  # return node with minimum val
+
+  def minValNode(node)
+    current = node
+
+    while(current.left.nil? == false)
+      current = current.left
+    end
+
+    current
+  end
+
+  def delete(root, value)
+    # if tree is empty,
+    # return new node
+    if root.nil?
+      root
+    end
+
+    # else, look down the tree
+    if value < root.value
+      root.left = delete(root.left, value)
+    elsif value > root.value
+      root.right = delete(root.right, value)
+    
+    # if value == root, lets delete it
+    else
+      # check if node has one child
+      # if so, replace with child 
+      if root.left.nil?
+        temp = root.right
+        root =  nil
+        return temp
+      elsif root.right.nil?
+        temp = root.left
+        root = nil
+        return temp
+      end
+
+      # if node has two children
+      # find next biggest by looking in right subtree
+      # and replace with first leftmost child
+      # if no left node smaller, replace with smallest found
+      
+      temp = minValNode(root.right)
+
+      root.value = temp.value
+
+      root.right = delete(root.right, temp.value)
+    end
+
+    # return node pointer
+    root
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -78,4 +134,7 @@ tree = Tree.new(arr)
 tree.pretty_print
 tree.insert(tree.root, 8)
 tree.insert(tree.root, 0)
+tree.pretty_print
+tree.delete(tree.root, 3)
+tree.delete(tree.root,1)
 tree.pretty_print
