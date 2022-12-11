@@ -22,9 +22,9 @@ class Tree
   # input: sorted array
   # output: root node of balanced BST
   def build_tree
-
-
-
+    if @arr.class != 'Array'
+      return 
+    end
   end
 
 end
