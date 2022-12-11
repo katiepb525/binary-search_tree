@@ -46,7 +46,6 @@ class Tree
 
   # insert a value into binary search tree
   def insert(root, value)
-    
     # if tree is empty,
     # return new node
     if root.nil?
@@ -60,7 +59,7 @@ class Tree
     elsif value > root.value
       root.right = insert(root.right, value)
     end
-    
+
     # return node pointer
     root
   end
