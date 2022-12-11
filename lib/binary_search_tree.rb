@@ -4,8 +4,8 @@
 class Node
   include Comparable
 
-  def initialize(l_child=nil, r_child=nil, value)
-    @l_child = l_child
+  def initialize(left=nil, r_child=nil, value)
+    @left = left
     @r_child = r_child
     @value = value
   end
@@ -30,7 +30,7 @@ class Tree
     root = Node.new(nil, nil, arr[mid])
 
     # assign all values < mid to left of subtree
-    root.l_child = build_tree(arr[mid])
+    root.left = build_tree(arr[mid])
 
     # assign all values > mid to right of subtree
     root.r_child = build_tree(arr[mid+1])
