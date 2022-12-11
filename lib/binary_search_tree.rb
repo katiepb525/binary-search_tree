@@ -44,6 +44,27 @@ class Tree
     root
   end
 
+  # insert a value into binary search tree
+  def insert(root, value)
+    
+    # if tree is empty,
+    # return new node
+    if root.nil?
+      root = Node.new(value)
+      root
+    end
+
+    # else, look down the tree
+    if value < root.value
+      root.left = insert(root.left, value)
+    elsif value > root.value
+      root.right = insert(root.right, value)
+    end
+    
+    # return node pointer
+    root
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -55,4 +76,7 @@ end
 arr = [1, 2, 3, 4, 5, 6, 7]
 
 tree = Tree.new(arr)
+tree.pretty_print
+tree.insert(tree.root, 8)
+tree.insert(tree.root, 0)
 tree.pretty_print
