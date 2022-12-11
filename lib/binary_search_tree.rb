@@ -13,6 +13,7 @@ class Node
   end
 end
 
+# create binary search tree
 class Tree
   def initialize(arr)
     @arr = arr
