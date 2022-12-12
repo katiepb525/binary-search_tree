@@ -15,6 +15,7 @@ end
 # create binary search tree
 class Tree
   attr_reader :root
+
   def initialize(arr)
     @arr = arr
     @root = build_tree(@arr, 0, @arr.length - 1)
@@ -23,8 +24,6 @@ class Tree
     # keep track of visited nodes
     @visited_nodes = []
   end
-
-
 
   # convert sorted array to balanced BST
   # input: sorted array
@@ -76,9 +75,7 @@ class Tree
   def minValNode(node)
     current = node
 
-    while(current.left.nil? == false)
-      current = current.left
-    end
+    current = current.left while current.left.nil? == false
 
     current
   end
@@ -86,23 +83,21 @@ class Tree
   def delete(root, value)
     # if tree is empty,
     # return new node
-    if root.nil?
-      root
-    end
+    root if root.nil?
 
     # else, look down the tree
     if value < root.value
       root.left = delete(root.left, value)
     elsif value > root.value
       root.right = delete(root.right, value)
-    
+
     # if value == root, lets delete it
     else
       # check if node has one child
-      # if so, replace with child 
+      # if so, replace with child
       if root.left.nil?
         temp = root.right
-        root =  nil
+        root = nil
         return temp
       elsif root.right.nil?
         temp = root.left
@@ -114,7 +109,7 @@ class Tree
       # find next biggest by looking in right subtree
       # and replace with first leftmost child
       # if no left node smaller, replace with smallest found
-      
+
       temp = minValNode(root.right)
 
       root.value = temp.value
@@ -126,13 +121,11 @@ class Tree
     root
   end
 
-  #find and return value in tree
+  # find and return value in tree
   def find(value, root = @root)
     # if node empty,
     # end of tree reached. move on to next node in tree
-    if root.nil?
-      root
-    end
+    root if root.nil?
 
     # look down the tree
     if value < root.value
@@ -142,7 +135,7 @@ class Tree
     # if root.value == value
     else
       # return node
-      return root
+      root
     end
   end
 
@@ -152,7 +145,7 @@ class Tree
   # store values already traversed in array
   def level_order(root = @root, queued_nodes = @queued_nodes, visited_nodes = @visited_nodes)
     return if root.nil?
-    
+
     # perform block operation on current node, print result
 
     # loop version
@@ -162,25 +155,18 @@ class Tree
       current = queued_nodes.first
       visited_nodes.push(current.value)
 
-      if block_given?
-        p yield current.value
-      end
+      p yield current.value if block_given?
 
-      if current.left.nil? == false
-        queued_nodes.push(current.left)
-      end
-      if current.right.nil? == false
-        queued_nodes.push(current.right)
-      end
+      queued_nodes.push(current.left) if current.left.nil? == false
+      queued_nodes.push(current.right) if current.right.nil? == false
 
       queued_nodes.shift
     end
 
-    if block_given? == false
-      puts visited_nodes
-    end
-  end
+    return unless block_given? == false
 
+    puts visited_nodes
+  end
 
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
@@ -201,4 +187,4 @@ tree.delete(tree.root, 3)
 tree.delete(tree.root, 1)
 tree.pretty_print
 
-tree.level_order{|e| e * 2}
+tree.level_order { |e| e * 2 }
