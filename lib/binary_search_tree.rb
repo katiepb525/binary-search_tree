@@ -164,8 +164,6 @@ class Tree
 
       if block_given?
         p yield current.value
-      else
-        p current.value
       end
 
       if current.left.nil? == false
@@ -178,8 +176,9 @@ class Tree
       queued_nodes.shift
     end
 
-    p visited_nodes
-
+    if block_given? == false
+      puts visited_nodes
+    end
   end
 
 
