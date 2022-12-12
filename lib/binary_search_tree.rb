@@ -153,7 +153,7 @@ class Tree
   def level_order(root = @root, queued_nodes = @queued_nodes, visited_nodes = @visited_nodes)
     return if root.nil?
     
-    # # perform block operation on current node, print result
+    # perform block operation on current node, print result
 
     # loop version
     queued_nodes.push(root)
