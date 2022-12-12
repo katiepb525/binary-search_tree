@@ -75,7 +75,7 @@ class Tree
   def min_val_node(node)
     current = node
 
-    current = current.left while current.left.nil? == false
+    current = current.left while (current.left.nil? == false)
 
     current
   end
@@ -166,6 +166,7 @@ class Tree
     return unless block_given? == false
 
     puts visited_nodes
+
   end
 
   # print out search tree
