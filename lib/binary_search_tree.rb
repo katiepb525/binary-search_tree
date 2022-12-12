@@ -184,6 +184,13 @@ class Tree
     inorder(root.right)
   end
 
+  def postorder(root=@root)
+    return if root.nil?
+    postorder(root.left)
+    postorder(root.right)
+    p root.value
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -208,3 +215,5 @@ puts 'preorder:'
 tree.preorder
 puts 'inorder:'
 tree.inorder
+puts 'postorder:'
+tree.postorder
