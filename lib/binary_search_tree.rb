@@ -120,6 +120,27 @@ class Tree
     root
   end
 
+  #find and return value in tree
+  def find(value, root = @root)
+    # if node empty,
+    # end of tree reached. move on to next node in tree
+    if root.nil?
+      root
+    end
+
+    # look down the tree
+    if value < root.value
+      root.left = find(value, root.left)
+    elsif value > root.value
+      root.right = find(value, root.right)
+    # if root.value == value
+    else
+      # return node
+      return root
+    end
+  end
+
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -138,3 +159,4 @@ tree.pretty_print
 tree.delete(tree.root, 3)
 tree.delete(tree.root,1)
 tree.pretty_print
+p tree.find(7)
