@@ -177,6 +177,13 @@ class Tree
     preorder(root.right)
   end 
 
+  def inorder(root=@root)
+    return if root.nil?
+    inorder(root.left)
+    p root.value
+    inorder(root.right)
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -197,5 +204,7 @@ tree.delete(tree.root, 1)
 tree.pretty_print
 
 tree.level_order { |e| e * 2 }
-puts '====='
+puts 'preorder:'
 tree.preorder
+puts 'inorder:'
+tree.inorder
