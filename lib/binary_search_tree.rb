@@ -154,9 +154,6 @@ class Tree
     return if root.nil?
     
     # # perform block operation on current node, print result
-    if block_given?
-      p yield root.value
-    end
 
     # loop version
     queued_nodes.push(root)
@@ -165,7 +162,11 @@ class Tree
       current = queued_nodes.first
       visited_nodes.push(current.value)
 
-      p current.value
+      if block_given?
+        p yield current.value
+      else
+        p current.value
+      end
 
       if current.left.nil? == false
         queued_nodes.push(current.left)
@@ -201,4 +202,4 @@ tree.delete(tree.root, 3)
 tree.delete(tree.root, 1)
 tree.pretty_print
 
-tree.level_order
+tree.level_order{|e| e * 2}
