@@ -191,6 +191,25 @@ class Tree
     p root.value
   end
 
+  # number of edges from given node to leaf node
+  def height(node=@root)
+    current = node
+    count = 0
+    # if a node has a left or right leaf
+    while (current.left.nil? == false || current.right.nil? == false)
+      #if there is no left node
+      if current.left.nil?
+        count += 1 
+        current = current.right
+      else
+        count += 1
+        current = current.left
+      end
+    end
+
+    count
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
@@ -217,3 +236,5 @@ puts 'inorder:'
 tree.inorder
 puts 'postorder:'
 tree.postorder
+puts 'height:'
+p tree.height(tree.find(4))
