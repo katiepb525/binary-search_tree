@@ -72,7 +72,7 @@ class Tree
   # if search tree is not empty
   # return node with minimum val
 
-  def minValNode(node)
+  def min_val_node(node)
     current = node
 
     current = current.left while current.left.nil? == false
@@ -110,7 +110,7 @@ class Tree
       # and replace with first leftmost child
       # if no left node smaller, replace with smallest found
 
-      temp = minValNode(root.right)
+      temp = min_val_node(root.right)
 
       root.value = temp.value
 
