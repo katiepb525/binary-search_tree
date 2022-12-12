@@ -18,7 +18,13 @@ class Tree
   def initialize(arr)
     @arr = arr
     @root = build_tree(@arr, 0, @arr.length - 1)
+    # queue to keep track of discovered nodes
+    @queued_nodes = []
+    # keep track of visited nodes
+    @visited_nodes = []
   end
+
+
 
   # convert sorted array to balanced BST
   # input: sorted array
@@ -140,6 +146,41 @@ class Tree
     end
   end
 
+  # traverse the tree in breadth first level order
+  # yield each node the provided block
+  # return array of values if no block given
+  # store values already traversed in array
+  def level_order(root = @root, queued_nodes = @queued_nodes, visited_nodes = @visited_nodes)
+    return if root.nil?
+    
+    # # perform block operation on current node, print result
+    if block_given?
+      p yield root.value
+    end
+
+    # loop version
+    queued_nodes.push(root)
+
+    while queued_nodes.empty? == false
+      current = queued_nodes.first
+      visited_nodes.push(current.value)
+
+      p current.value
+
+      if current.left.nil? == false
+        queued_nodes.push(current.left)
+      end
+      if current.right.nil? == false
+        queued_nodes.push(current.right)
+      end
+
+      queued_nodes.shift
+    end
+
+    p visited_nodes
+
+  end
+
 
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
@@ -157,6 +198,7 @@ tree.insert(tree.root, 8)
 tree.insert(tree.root, 0)
 tree.pretty_print
 tree.delete(tree.root, 3)
-tree.delete(tree.root,1)
+tree.delete(tree.root, 1)
 tree.pretty_print
-p tree.find(7)
+
+tree.level_order
