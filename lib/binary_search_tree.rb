@@ -122,20 +122,22 @@ class Tree
   end
 
   # find and return value in tree
-  def find(value, root = @root.clone)
+  def find(value, root = @root)
+
+    current = root.clone
     # if node empty,
     # end of tree reached. move on to next node in tree
-    root if root.nil?
+    current if current.nil?
 
     # look down the tree
-    if value < root.value
-      root.left = find(value, root.left)
-    elsif value > root.value
-      root.right = find(value, root.right)
-    # if root.value == value
+    if value < current.value
+      current.left = find(value, current.left)
+    elsif value > current.value
+      current.right = find(value, current.right)
+    # if current.value == value
     else
       # return node
-      root
+      current
     end
   end
 
@@ -257,9 +259,9 @@ tree.postorder
 puts 'height:'
 p tree.height(tree.find(4))
 
-p tree.root.right.value
+p tree.root.right
 
 puts "depth:"
 p tree.depth(tree.find(8))
 
-p tree.root.right.value
+p tree.root.right
