@@ -122,7 +122,7 @@ class Tree
   end
 
   # find and return value in tree
-  def find(value, root = @root)
+  def find(value, root = @root.clone)
     # if node empty,
     # end of tree reached. move on to next node in tree
     root if root.nil?
@@ -192,7 +192,7 @@ class Tree
   end
 
   # number of edges from given node to leaf node
-  def height(node=@root)
+  def height(node)
     current = node
     count = 0
     # if a node has a left or right leaf
