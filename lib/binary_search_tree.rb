@@ -87,9 +87,9 @@ class Tree
 
     # else, look down the tree
     if value < root.value
-      root.left = delete(root.left, value)
+      root.left = delete(value, root.left)
     elsif value > root.value
-      root.right = delete(root.right, value)
+      root.right = delete(value, root.right)
 
     # if value == root, lets delete it
     else
@@ -114,7 +114,7 @@ class Tree
 
       root.value = temp.value
 
-      root.right = delete(root.right, temp.value)
+      root.right = delete(temp.value, root.right)
     end
 
     # return node pointer
