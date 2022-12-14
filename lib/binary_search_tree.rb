@@ -212,7 +212,7 @@ class Tree
 
     l_depth = depth(node.left)
 
-    l_depth = depth(node.left)
+    r_depth = depth(node.right)
 
     return [l_depth, r_depth].max + 1
   end
