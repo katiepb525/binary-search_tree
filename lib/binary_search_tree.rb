@@ -178,9 +178,12 @@ class Tree
   end
 
   #traverse tree in preorder
-  def preorder(root = @root)
-    return if root.nil?
-    p root.value
+  def preorder(root = @root, arr = @preorder_arr)
+    return arr if root.nil?
+    # p root.value
+    if !arr.include?(root.value)
+      arr.push(root.value)
+    end
     preorder(root.left)
     preorder(root.right)
   end 
@@ -262,3 +265,4 @@ tree.insert(10)
 tree.delete(7)
 tree.insert(11)
 tree.pretty_print
+p tree.preorder
