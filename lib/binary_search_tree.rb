@@ -208,7 +208,13 @@ class Tree
 
   # number of edges from root to given node
   def depth(node = root)
-  
+    return -1 if node.nil?
+
+    l_depth = depth(node.left)
+
+    l_depth = depth(node.left)
+
+    return [l_depth, r_depth].max + 1
   end
 
   # print out search tree
