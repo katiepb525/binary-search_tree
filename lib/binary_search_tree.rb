@@ -23,6 +23,12 @@ class Tree
     @queued_nodes = []
     # keep track of visited nodes
     @visited_nodes = []
+    # store preorder arr
+    @preorder_arr = []
+    # store inorder arr
+    @inorder_arr = []
+    # store postorder arr
+    @postorder_arr = []
   end
 
   # convert sorted array to balanced BST
