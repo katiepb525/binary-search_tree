@@ -188,10 +188,12 @@ class Tree
     preorder(root.right)
   end 
 
-  def inorder(root=@root)
-    return if root.nil?
+  def inorder(root=@root, arr = @inorder_arr)
+    return arr if root.nil?
     inorder(root.left)
-    p root.value
+    if !arr.include?(root.value)
+      arr.push(root.value)
+    end
     inorder(root.right)
   end
 
@@ -266,3 +268,4 @@ tree.delete(7)
 tree.insert(11)
 tree.pretty_print
 p tree.preorder
+p tree.inorder
