@@ -194,40 +194,21 @@ class Tree
   end
 
   # number of edges from given node to leaf node
-  def height(node)
-    current = node
-    count = 0
-    # if a node has a left or right leaf
-    while (current.left.nil? == false || current.right.nil? == false)
-      #if there is no left node
-      if current.left.nil?
-        count += 1 
-        current = current.right
-      else
-        count += 1
-        current = current.left
-      end
-    end
-
-    count
+  def height(node = root)
+    return -1 if node.nil?
+    
+    # get height of left tree
+    l_height = height(node.left)
+    # get height of right tree
+    r_height = height(node.right)
+  
+    # return greater of two heights
+    return [l_height, r_height].max + 1
   end
 
-  def depth(node, root = @root)
+  # number of edges from root to given node
+  def depth(node = root)
   
-    current = root.clone
-    count = 0
-    while current.nil? == false && current.value != node.value
-    
-      # if there is no left node
-        if current.left.nil?
-          count += 1 
-          current = current.right
-        else
-          count += 1
-          current = current.left
-        end
-    end
-    count
   end
 
   # print out search tree
