@@ -60,9 +60,9 @@ class Tree
 
     # else, look down the tree
     if value < root.value
-      root.left = insert(root.left, value)
+      root.left = insert(value, root.left)
     elsif value > root.value
-      root.right = insert(root.right, value)
+      root.right = insert(value, root.right)
     end
 
     # return node pointer
