@@ -50,7 +50,7 @@ class Tree
   end
 
   # insert a value into binary search tree
-  def insert(root, value)
+  def insert(value, root = @root)
     # if tree is empty,
     # return new node
     if root.nil?
@@ -80,7 +80,7 @@ class Tree
     current
   end
 
-  def delete(root, value)
+  def delete(value, root = @root)
     # if tree is empty,
     # return new node
     root if root.nil?
