@@ -196,7 +196,7 @@ class Tree
   # number of edges from given node to leaf node
   def height(node = root)
     return -1 if node.nil?
-    
+
     # get height of left tree
     l_height = height(node.left)
     # get height of right tree
@@ -244,11 +244,11 @@ tree.inorder
 puts 'postorder:'
 tree.postorder
 puts 'height:'
-p tree.height(tree.find(4))
+p tree.height
 
-p tree.root.right
+# p tree.root.right
 
-puts "depth:"
-p tree.depth(tree.find(8))
+# puts "depth:"
+# p tree.depth(tree.find(8))
 
-p tree.root.right
+# p tree.root.right
