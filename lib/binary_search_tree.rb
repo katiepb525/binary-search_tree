@@ -226,7 +226,7 @@ class Tree
     p (l_height - r_height).abs
     # absolute value between two values
     # is abs less than or equal to 1?
-    (l_height - r_height).abs < 1 ? true : false 
+    (l_height - r_height).abs <= 1 ? true : false 
   end
 
   # print out search tree
