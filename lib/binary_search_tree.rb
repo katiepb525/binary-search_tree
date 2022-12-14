@@ -246,14 +246,6 @@ end
 arr = [1, 2, 3, 4, 5, 6, 7]
 
 tree = Tree.new(arr)
-tree.pretty_print
-tree.insert(tree.root, 8)
-tree.insert(tree.root, 0)
-tree.pretty_print
-tree.delete(tree.root, 3)
-tree.delete(tree.root, 1)
-tree.pretty_print
-
 tree.level_order { |e| e * 2 }
 puts 'preorder:'
 tree.preorder
@@ -265,4 +257,8 @@ puts 'height:'
 p tree.height
 puts "depth:"
 p tree.depth
-p tree.balanced?
+tree.insert(8)
+tree.insert(10)
+tree.delete(7)
+tree.insert(11)
+tree.pretty_print
