@@ -257,10 +257,6 @@ puts 'postorder:'
 tree.postorder
 puts 'height:'
 p tree.height
-
-# p tree.root.right
-
-# puts "depth:"
-# p tree.depth(tree.find(8))
-
-# p tree.root.right
+puts "depth:"
+p tree.depth
+p tree.balanced?
