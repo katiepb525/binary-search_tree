@@ -217,6 +217,18 @@ class Tree
     return [l_depth, r_depth].max + 1
   end
 
+  # check if BFS is balanced
+  def balanced?(node = root)
+    l_height = self.height(node.left)
+    r_height = self.height(node.right)
+
+    puts 'abs:'
+    p (l_height - r_height).abs
+    # absolute value between two values
+    # is abs less than or equal to 1?
+    (l_height - r_height).abs < 1 ? true : false 
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
