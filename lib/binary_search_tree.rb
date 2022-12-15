@@ -182,7 +182,7 @@ class Tree
       arr.push(root.value) unless arr.include?(root.value)
     end
     preorder(root.left, arr, &block)
-    preorder(root.right,arr, &block)
+    preorder(root.right, arr, &block)
   end
 
   def inorder(root = @root, arr = [], &block)
@@ -200,6 +200,7 @@ class Tree
 
   def postorder(root = @root, arr = [], &block)
     return arr if root.nil?
+
     postorder(root.left, arr, &block)
     postorder(root.right, arr, &block)
     if block_given?
@@ -262,7 +263,7 @@ class Tree
   end
 end
 
-arr = (Array.new(15) {rand(1..100)})
+arr = (Array.new(15) { rand(1..100) })
 # remove duplicates
 arr.uniq!
 # sort
@@ -270,24 +271,22 @@ arr.sort!
 # p arr
 
 tree = Tree.new(arr)
-# p tree.balanced?
-# p tree.preorder
-# p tree.inorder
-# p tree.postorder
-
-# 10.times do
-#   tree.insert((rand(100..150)))
-# end
-
-# tree.pretty_print
-
-# p tree.balanced?
-# tree.rebalance
-# tree.pretty_print
-
-# p tree.balanced?
-p tree.preorder{|e| e * 2}
+p tree.balanced?
+p tree.preorder
 p tree.inorder
 p tree.postorder
-puts "postorder again..."
+
+10.times do
+  tree.insert((rand(100..150)))
+end
+
+tree.pretty_print
+
+p tree.balanced?
+tree.rebalance
+tree.pretty_print
+
+p tree.balanced?
+p tree.preorder
+p tree.inorder
 p tree.postorder
