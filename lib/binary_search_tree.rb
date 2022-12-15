@@ -259,33 +259,30 @@ class Tree
   end
 end
 
-arr = [1, 2, 3, 4, 5, 6, 7]
+arr = (Array.new(15) {rand(1..100)})
+# remove duplicates
+arr.uniq!
+# sort
+arr.sort!
+p arr
 
 tree = Tree.new(arr)
-tree.level_order { |e| e * 2 }
-# puts 'preorder:'
-# tree.preorder
-# puts 'inorder:'
-# tree.inorder
-# puts 'postorder:'
-# tree.postorder
-# puts 'height:'
-# p tree.height
-# puts "depth:"
-# p tree.depth
-tree.insert(8)
-tree.insert(10)
-tree.delete(7)
-tree.insert(11)
-tree.pretty_print
+p tree.balanced?
 p tree.preorder
 p tree.inorder
-puts 'postorder without block:'
 p tree.postorder
-puts 'postorder with block:'
-# block works if you reset instance array
-tree.postorder_arr = []
-p tree.postorder { |e| e * 2 }
+
+10.times do
+  tree.insert((rand(100..150)))
+end
+
+tree.pretty_print
+
+p tree.balanced?
 tree.rebalance
 tree.pretty_print
+
 p tree.balanced?
+p tree.preorder
+p tree.inorder
+p tree.postorder
