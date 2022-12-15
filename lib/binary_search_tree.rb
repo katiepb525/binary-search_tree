@@ -15,6 +15,7 @@ end
 # create binary search tree
 class Tree
   attr_reader :root
+  attr_accessor :postorder_arr
 
   def initialize(arr)
     @arr = arr
@@ -274,7 +275,11 @@ tree.insert(11)
 tree.pretty_print
 p tree.preorder
 p tree.inorder
-puts "postorder with block:"
-p tree.postorder{|e| e * 2}
 puts "postorder without block:"
 p tree.postorder
+puts "postorder with block:"
+tree.postorder_arr = []
+p tree.postorder{|e| e * 2}
+
+# postorder does work, but it doesnt like to be called twice.
+# maybe i can create a new array and return it if postorder_arr already exists.
