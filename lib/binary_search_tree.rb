@@ -177,13 +177,18 @@ class Tree
   end
 
   # traverse tree in preorder
-  def preorder(root = @root, arr = @preorder_arr)
+  def preorder(root = @root, arr = [], &block)
     return arr if root.nil?
 
     # p root.value
-    arr.push(root.value) unless arr.include?(root.value)
-    preorder(root.left)
-    preorder(root.right)
+    if block_given?
+      new_value = block.call root.value.clone
+      arr.push(new_value) unless arr.include?(new_value)
+    else
+      arr.push(root.value) unless arr.include?(root.value)
+    end
+    preorder(root.left, arr, &block)
+    preorder(root.right,arr, &block)
   end
 
   def inorder(root = @root, arr = [], &block)
@@ -287,8 +292,8 @@ tree = Tree.new(arr)
 # tree.pretty_print
 
 # p tree.balanced?
-p tree.preorder
-p tree.inorder{ |e| e * 2}
+p tree.preorder{|e| e * 2}
+p tree.inorder
 p tree.postorder
 puts "postorder again..."
 p tree.postorder
