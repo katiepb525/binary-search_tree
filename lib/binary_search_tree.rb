@@ -186,12 +186,17 @@ class Tree
     preorder(root.right)
   end
 
-  def inorder(root = @root, arr = @inorder_arr)
+  def inorder(root = @root, arr = [], &block)
     return arr if root.nil?
 
-    inorder(root.left)
-    arr.push(root.value) unless arr.include?(root.value)
-    inorder(root.right)
+    inorder(root.left, arr, &block)
+    if block_given?
+      new_value = block.call root.value.clone
+      arr.push(new_value) unless arr.include?(new_value)
+    else
+      arr.push(root.value) unless arr.include?(root.value)
+    end
+    inorder(root.right, arr, &block)
   end
 
   def postorder(root = @root, arr = [], &block)
@@ -283,7 +288,7 @@ tree = Tree.new(arr)
 
 # p tree.balanced?
 p tree.preorder
-p tree.inorder
+p tree.inorder{ |e| e * 2}
 p tree.postorder
 puts "postorder again..."
 p tree.postorder
