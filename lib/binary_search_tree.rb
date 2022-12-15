@@ -264,25 +264,28 @@ arr = (Array.new(15) {rand(1..100)})
 arr.uniq!
 # sort
 arr.sort!
-p arr
+# p arr
 
 tree = Tree.new(arr)
-p tree.balanced?
-p tree.preorder
-p tree.inorder
+# p tree.balanced?
+# p tree.preorder
+# p tree.inorder
+# p tree.postorder
+
+# 10.times do
+#   tree.insert((rand(100..150)))
+# end
+
+# tree.pretty_print
+
+# p tree.balanced?
+# tree.rebalance
+# tree.pretty_print
+
+# p tree.balanced?
+# p tree.preorder
+# p tree.inorder
+
 p tree.postorder
-
-10.times do
-  tree.insert((rand(100..150)))
-end
-
-tree.pretty_print
-
-p tree.balanced?
-tree.rebalance
-tree.pretty_print
-
-p tree.balanced?
-p tree.preorder
-p tree.inorder
+puts "postorder again..."
 p tree.postorder
