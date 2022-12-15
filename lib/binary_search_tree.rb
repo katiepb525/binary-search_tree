@@ -197,11 +197,11 @@ class Tree
     inorder(root.right)
   end
 
-  def postorder(root=@root)
-    return if root.nil?
+  def postorder(root=@root, arr = @postorder_arr)
+    return arr if root.nil?
     postorder(root.left)
     postorder(root.right)
-    p root.value
+    arr.push(root.value) unless arr.include?(root.value)
   end
 
   # number of edges from given node to leaf node
@@ -252,16 +252,16 @@ arr = [1, 2, 3, 4, 5, 6, 7]
 
 tree = Tree.new(arr)
 tree.level_order { |e| e * 2 }
-puts 'preorder:'
-tree.preorder
-puts 'inorder:'
-tree.inorder
-puts 'postorder:'
-tree.postorder
-puts 'height:'
-p tree.height
-puts "depth:"
-p tree.depth
+# puts 'preorder:'
+# tree.preorder
+# puts 'inorder:'
+# tree.inorder
+# puts 'postorder:'
+# tree.postorder
+# puts 'height:'
+# p tree.height
+# puts "depth:"
+# p tree.depth
 tree.insert(8)
 tree.insert(10)
 tree.delete(7)
@@ -269,3 +269,4 @@ tree.insert(11)
 tree.pretty_print
 p tree.preorder
 p tree.inorder
+p tree.postorder
