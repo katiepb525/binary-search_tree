@@ -278,8 +278,7 @@ p tree.inorder
 puts "postorder without block:"
 p tree.postorder
 puts "postorder with block:"
+# block works if you reset instance array
 tree.postorder_arr = []
 p tree.postorder{|e| e * 2}
 
-# postorder does work, but it doesnt like to be called twice.
-# maybe i can create a new array and return it if postorder_arr already exists.
