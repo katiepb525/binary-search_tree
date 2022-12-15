@@ -82,7 +82,7 @@ class Tree
   def min_val_node(node)
     current = node
 
-    current = current.left while (current.left.nil? == false)
+    current = current.left while current.left.nil? == false
 
     current
   end
@@ -130,7 +130,6 @@ class Tree
 
   # find and return value in tree
   def find(value, root = @root)
-
     current = root.clone
     # if node empty,
     # end of tree reached. move on to next node in tree
@@ -175,31 +174,29 @@ class Tree
     return unless block_given? == false
 
     puts visited_nodes
-
   end
 
-  #traverse tree in preorder
+  # traverse tree in preorder
   def preorder(root = @root, arr = @preorder_arr)
     return arr if root.nil?
+
     # p root.value
-    if !arr.include?(root.value)
-      arr.push(root.value)
-    end
+    arr.push(root.value) unless arr.include?(root.value)
     preorder(root.left)
     preorder(root.right)
-  end 
+  end
 
-  def inorder(root=@root, arr = @inorder_arr)
+  def inorder(root = @root, arr = @inorder_arr)
     return arr if root.nil?
+
     inorder(root.left)
-    if !arr.include?(root.value)
-      arr.push(root.value)
-    end
+    arr.push(root.value) unless arr.include?(root.value)
     inorder(root.right)
   end
 
-  def postorder(root=@root, arr = @postorder_arr, &block)
+  def postorder(root = @root, arr = @postorder_arr, &block)
     return arr if root.nil?
+
     postorder(root.left, &block)
     postorder(root.right, &block)
     if block_given?
@@ -218,9 +215,9 @@ class Tree
     l_height = height(node.left)
     # get height of right tree
     r_height = height(node.right)
-  
+
     # return greater of two heights
-    return [l_height, r_height].max + 1
+    [l_height, r_height].max + 1
   end
 
   # number of edges from root to given node
@@ -231,23 +228,25 @@ class Tree
 
     r_depth = depth(node.right)
 
-    return [l_depth, r_depth].max + 1
+    [l_depth, r_depth].max + 1
   end
 
   # check if BFS is balanced
   def balanced?(node = root)
-    l_height = self.height(node.left)
-    r_height = self.height(node.right)
+    l_height = height(node.left)
+    r_height = height(node.right)
 
-    puts 'abs:'
-    p (l_height - r_height).abs
+    # puts 'abs:'
+    # p (l_height - r_height).abs
+
     # absolute value between two values
     # is abs less than or equal to 1?
-    (l_height - r_height).abs <= 1 ? true : false 
+    (l_height - r_height).abs <= 1
   end
 
-  def rebalance()
-    return p "rebalance not necessary" if balanced?
+  def rebalance
+    return p 'rebalance not necessary' if balanced?
+
     new_arr = inorder.clone
     @root = build_tree(new_arr, 0, new_arr.length)
   end
@@ -281,10 +280,12 @@ tree.insert(11)
 tree.pretty_print
 p tree.preorder
 p tree.inorder
-puts "postorder without block:"
+puts 'postorder without block:'
 p tree.postorder
-puts "postorder with block:"
+puts 'postorder with block:'
 # block works if you reset instance array
 tree.postorder_arr = []
-p tree.postorder{|e| e * 2}
-
+p tree.postorder { |e| e * 2 }
+tree.rebalance
+tree.pretty_print
+p tree.balanced?
