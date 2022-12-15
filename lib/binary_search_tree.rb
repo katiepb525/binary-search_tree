@@ -246,6 +246,12 @@ class Tree
     (l_height - r_height).abs <= 1 ? true : false 
   end
 
+  def rebalance()
+    return p "rebalance not necessary" if balanced?
+    new_arr = inorder.clone
+    @root = build_tree(new_arr, 0, new_arr.length)
+  end
+
   # print out search tree
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
