@@ -197,11 +197,16 @@ class Tree
     inorder(root.right)
   end
 
-  def postorder(root=@root, arr = @postorder_arr)
+  def postorder(root=@root, arr = @postorder_arr, &block)
     return arr if root.nil?
-    postorder(root.left)
-    postorder(root.right)
-    arr.push(root.value) unless arr.include?(root.value)
+    postorder(root.left, &block)
+    postorder(root.right, &block)
+    if block_given?
+      new_value = block.call root.value.clone
+      arr.push(new_value) unless arr.include?(new_value)
+    else
+      arr.push(root.value) unless arr.include?(root.value)
+    end
   end
 
   # number of edges from given node to leaf node
@@ -269,4 +274,7 @@ tree.insert(11)
 tree.pretty_print
 p tree.preorder
 p tree.inorder
+puts "postorder with block:"
+p tree.postorder{|e| e * 2}
+puts "postorder without block:"
 p tree.postorder
