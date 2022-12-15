@@ -194,11 +194,10 @@ class Tree
     inorder(root.right)
   end
 
-  def postorder(root = @root, arr = @postorder_arr, &block)
+  def postorder(root = @root, arr = [], &block)
     return arr if root.nil?
-
-    postorder(root.left, &block)
-    postorder(root.right, &block)
+    postorder(root.left, arr, &block)
+    postorder(root.right, arr, &block)
     if block_given?
       new_value = block.call root.value.clone
       arr.push(new_value) unless arr.include?(new_value)
@@ -283,9 +282,8 @@ tree = Tree.new(arr)
 # tree.pretty_print
 
 # p tree.balanced?
-# p tree.preorder
-# p tree.inorder
-
+p tree.preorder
+p tree.inorder
 p tree.postorder
 puts "postorder again..."
 p tree.postorder
