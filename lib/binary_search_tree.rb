@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
+# require 'pry-byebug'
 # binary tree node
 class Node
   attr_accessor :left, :right, :value
